@@ -1,7 +1,10 @@
 import './homeimg.css'
+import pic from '../../assets/homeimg.jpg';
 import React,{Component} from 'react';
 import { Row,Col } from "antd";
-import pic from '../../assets/homeimg.jpg';
+import { Card} from "antd";
+const { Meta } =Card;
+
 export default class homeimg extends Component{
     render(){
         return (
@@ -9,7 +12,12 @@ export default class homeimg extends Component{
                 <Row>
                     <Col span={13} offset={2}>
                         <div className="homepic">
-                            <img src={pic} alt={"图片"}/>
+                            <Card hoverable cover={<img alt="example" src={pic} />}>
+                                <Meta
+                                    title="Europe Street beat"
+                                    description="www.instagram.com"
+                                />
+                            </Card>
                         </div>
                     </Col>
                     <Col span={9}>
