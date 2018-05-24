@@ -10,7 +10,7 @@ export default class homeimg extends Component{
         return (
             <div>
                 <Row>
-                    <Col span={13} offset={2}>
+                    <Col  lg={{span:13,offset:2}} sm={{span:24}}>
                         <div className="homepic">
                             <Card hoverable cover={<img alt="example" src={pic} />}>
                                 <Meta
@@ -20,7 +20,7 @@ export default class homeimg extends Component{
                             </Card>
                         </div>
                     </Col>
-                    <Col span={9}>
+                    <Col lg={{span:9}} sm={{span:24}}>
                         <div className="homepic">
                             <h1>What We’re Building</h1>
                             <p className="writer">Vijay</p>
