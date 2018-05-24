@@ -1,5 +1,11 @@
+/*@media screen and (min-width: 800px){
+  .App{
+    width: 1300px;
+  }
+}*/
 .App {
   text-align: center;
+
 }
 
 .App-logo {
