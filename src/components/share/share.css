@@ -1,0 +1,22 @@
+.body{
+}
+.images img{
+    width:100%;
+    filter:brightness(80%);
+}
+.images img:hover{
+    filter:brightness(100%);
+    border: 1px solid #c1c1c1;
+}
+.hgt-7 img{
+    height: 100px;
+}
+.hgt-5 img{
+    height: 200px;
+}
+.hgt-3 img{
+    height: 300px;
+}
+.story{
+    text-align: left;
+}
