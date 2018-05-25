@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './components/navbar/navbar';
 import Homeimg from './components/homeimg/homeimg';
 import Share from './components/share/share';
+import Story from './components/story/story';
 class App extends Component {
   render() {
     return (
@@ -14,6 +15,7 @@ class App extends Component {
                   <Navbar/>
                   <Route exact path="/" component={Homeimg}/>
                   <Route path='/share' component={Share}/>
+                  <Route path='/story' component={Story}/>
               </div>
           </Router>
       </div>
