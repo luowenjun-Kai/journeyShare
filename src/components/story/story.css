@@ -8,6 +8,15 @@
     padding-left: 5%;
 }
 #aside{
-    width: 20%;
-    padding:15px 5% 0 0;
+    width: 30%;
+
+}
+
+#timeline{
+    width: 100%;
+    text-align: left;
+    margin-left: 10%;
+}
+#timeline a{
+    text-decoration: none;
 }
