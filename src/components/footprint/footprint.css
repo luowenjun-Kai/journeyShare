@@ -1,0 +1,33 @@
+h{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    font-size: 30px;
+    color: #222222;
+    animation: show 3s;
+}
+.dep{
+    position: absolute;
+    left: 25%;
+    top: -50px;
+    border-radius: 10px;
+    font-size: 20px;
+    animation: dep .3s linear 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes show {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes dep {
+    from{
+        top: -50px;
+    }
+    to{
+        top: 30%;
+    }
+}
