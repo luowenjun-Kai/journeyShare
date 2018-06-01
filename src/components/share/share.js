@@ -56,10 +56,13 @@ export  default class Share extends Component{
                                 <Col lg={{span:5}}>总花费：{this.state.journey.money}元</Col>
                                 <Col lg={{span:5}}>耗时：{this.state.journey.duration}天</Col>
                             </Panel>
-                            <Panel header={"行程路线"} key={"2"}>
+                            <Panel header={"摄影穿搭"} key={"2"}>
+                                <Col lg={{span:24}}>想要体现动物的俏皮可爱，可以穿搭黄色T恤等明亮色系的衣服，尽可能和动物多进行互动，将相机设置为连拍模式可以抓拍出自然的人物表情</Col>
+                            </Panel>
+                            <Panel header={"行程路线"} key={"3"}>
                                 <Col lg={{span:5,offset:2}}>1-2-3</Col>
                             </Panel>
-                            <Panel header={"故事分享"} key={"3"}>
+                            <Panel header={"故事分享"} key={"4"}>
                                 <div>
                                     {this.state.journey.content}
                                 </div>
