@@ -1,25 +1,32 @@
-import './share.css';
+import './storydetail.css';
 import pic from '../../assets/homeimg.jpg';
 import React,{Component} from 'react';
 import { Row,Col} from 'antd';
 import { Collapse } from 'antd';
 const Panel=Collapse.Panel;
-export  default class Share extends Component{
+export  default class StoryDetail extends Component{
     constructor(props){
         super(props);
         this.state=this.getInitialState();
+
     }
     getInitialState(){
-        return {
-            journey:{
-                title:'深圳',
-                subtitle:'深圳野生动物园',
-                starttime:'2018-2-16',
-                money:600,
-                duration:6,
-                content:'something you want to share.something you want to share.something you want to share.something you want to share.something you want to share.something you want to share.something you want to share.something you want to share.something you want to share.',
-                img:[pic]
+        let data=this.props.location.state.data;
+        console.log(data);
+        if(data===undefined){
+            data={
+                title:"",
+                subtitle:"",
+                content:"",
+                starttime:"",
+                duration:"",
+                money:"",
+                cover:"",
+                img:[]
             }
+        }
+        return {
+            journey:data
         }
     }
     render() {

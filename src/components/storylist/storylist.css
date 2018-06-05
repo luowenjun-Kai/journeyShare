@@ -20,3 +20,6 @@
 #timeline a{
     text-decoration: none;
 }
+.item:hover{
+    cursor: pointer;
+}
