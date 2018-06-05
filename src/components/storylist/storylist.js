@@ -1,7 +1,7 @@
 import './storylist.css'
 import pic from  '../../assets/homeimg.jpg'
 import React,{Component}from 'react';
-import {List} from 'antd';
+import {List,Row,Col} from 'antd';
 import {Timeline} from 'antd';
 import createHistory from 'history/createBrowserHistory';
 const history=createHistory({
@@ -22,8 +22,7 @@ export default class Storylist extends Component{
             starttime:'2013-2-16',
             money:600,
             duration:6,
-            cover:'../../assets/homeimg.jpg',
-            img:[pic]
+            cover:'chengdu',
         },
         {
             id:1,
@@ -33,8 +32,7 @@ export default class Storylist extends Component{
             starttime:'2015-2-16',
             money:1200,
             duration:4,
-            cover:'../../assets/homeimg.jpg',
-            img:[pic]
+            cover:'guilin',
         },
         {
             id:2,
@@ -44,8 +42,7 @@ export default class Storylist extends Component{
             starttime:'2018-2-16',
             money:800,
             duration:3,
-            cover:'../../assets/homeimg.jpg',
-            img:[pic]
+            cover:'fenghuang',
         },
     ]
     getInitialState(){
@@ -75,14 +72,19 @@ export default class Storylist extends Component{
         return(
             <div id="body">
                 <div id="list">
-                    <List itemLayout="vertical" dataSource={this.data} renderItem={item =>(
-                        <List.Item className="item" key={item.id} extra={<img width={200} alt="logo" src={pic} />} onClick={this.toStoryDetail.bind(this,item.id)}>
-                            <List.Item.Meta title={item.title} description={item.content}/>
-                        </List.Item>
+                    <List itemLayout="vertical" split dataSource={this.data} renderItem={item =>(
+                        <Row>
+                            <Col className={"item-col"} span={18} offset={3}>
+                                <List.Item className="item" key={item.id} extra={<div className={"item-imgdiv"}><img className={"item-img"} alt="logo" src={pic} /></div>} onClick={this.toStoryDetail.bind(this,item.id)}>
+                                    <List.Item.Meta title={<div className={"item-title"}>{item.title}</div>} description={item.content}/>
+                                </List.Item>
+                            </Col>
+                        </Row>
                     )}
 
                     />
                 </div>
+                /*
                 <div id='aside'>
                     <h1>Time</h1>
                     <div id="timeline">
@@ -91,7 +93,7 @@ export default class Storylist extends Component{
                         </Timeline>
                     </div>
 
-                </div>
+                </div>*/
             </div>
         )
     }

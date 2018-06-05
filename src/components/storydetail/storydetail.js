@@ -22,7 +22,6 @@ export  default class StoryDetail extends Component{
                 duration:"",
                 money:"",
                 cover:"",
-                img:[]
             }
         }
         return {
@@ -30,6 +29,7 @@ export  default class StoryDetail extends Component{
         }
     }
     render() {
+        let baseurl=`points/${this.state.journey.cover}`;
         return (
             <div className="body">
                 <div className="title">
@@ -41,19 +41,19 @@ export  default class StoryDetail extends Component{
                 <Row id="quick">
                     <Col sm={{span:24}} lg={{span:12}} className="images">
                         <Row gutter={8} className={"row"}>
-                            <Col span={8}  ><img src={this.state.journey.img[0]} alt={""}></img></Col>
-                            <Col span={8} ><img src={this.state.journey.img[0]} alt={""}></img></Col>
-                            <Col span={8}><img src={this.state.journey.img[0]} alt={""}></img></Col>
+                            <Col span={8} ><img src={require(`../../assets/${baseurl}/1.JPG`)} alt={""}></img></Col>
+                            <Col span={8} ><img src={require(`../../assets/${baseurl}/2.JPG`)} alt={""}></img></Col>
+                            <Col span={8}><img src={require(`../../assets/${baseurl}/3.JPG`)} alt={""}></img></Col>
                         </Row>
                         <Row gutter={8} className={"row"}>
-                            <Col span={8}  ><img src={this.state.journey.img[0]} alt={""}></img></Col>
-                            <Col span={8} ><img src={this.state.journey.img[0]} alt={""}></img></Col>
-                            <Col span={8}><img src={this.state.journey.img[0]} alt={""}></img></Col>
+                            <Col span={8} ><img src={require(`../../assets/${baseurl}/4.JPG`)} alt={""}></img></Col>
+                            <Col span={8} ><img src={require(`../../assets/${baseurl}/5.JPG`)} alt={""}></img></Col>
+                            <Col span={8}><img src={require(`../../assets/${baseurl}/6.JPG`)} alt={""}></img></Col>
                         </Row>
                         <Row gutter={8} className={"row"}>
-                            <Col span={8}  ><img src={this.state.journey.img[0]} alt={""}></img></Col>
-                            <Col span={8} ><img src={this.state.journey.img[0]} alt={""}></img></Col>
-                            <Col span={8}><img src={this.state.journey.img[0]} alt={""}></img></Col>
+                            <Col span={8} ><img src={require(`../../assets/${baseurl}/7.JPG`)} alt={""}></img></Col>
+                            <Col span={8} ><img src={require(`../../assets/${baseurl}/8.JPG`)} alt={""}></img></Col>
+                            <Col span={8}><img src={require(`../../assets/${baseurl}/9.JPG`)} alt={""}></img></Col>
                         </Row>
                     </Col>
                     <Col sm={{span:24}} lg={{span:12}} className="msg">
