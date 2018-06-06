@@ -3,3 +3,135 @@
     align-items: center;
     flex-wrap: wrap;
 }
+.navbar-nounderline{
+    border-bottom: none;
+}
+.navbar-shadow{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #1c1c1c;
+    opacity: 0.8;
+    z-index: 100;
+    display: none;
+}
+.navbar-modal{
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    opacity: 0.8;
+    z-index: 200;
+    display: none;
+}
+.navbar-modal-show{
+    display: block;
+    animation: show 500ms;
+}
+.navbar-modal-hide{
+    display: block;
+    animation: hide 500ms;
+    animation-fill-mode: forwards;
+}
+@keyframes show {
+    from{
+        transform: scale(3,3);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1,1);
+        opacity: 1;
+    }
+
+}
+@keyframes hide {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+        display: none;
+    }
+}
+.navbar-col{
+    position: relative;
+    padding: 32px;
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+}
+.navbar-col div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+
+}
+.navbar-col-title{
+    display: none;
+}
+.navbar-col-title-show{
+    display: block;
+    color: #fff;
+    animation: title-show 500ms;
+    animation-fill-mode: forwards;
+}
+.navbar-col-title-hide{
+    display: block;
+    color: #fff;
+    animation: title-hide 500ms;
+    animation-fill-mode: forwards;
+}
+@keyframes title-show {
+    from{
+        top: 100px;
+    }
+    to{
+        top: 50%;
+    }
+
+}
+@keyframes title-hide {
+    from{
+        top: 50%;
+    }
+    to{
+        top: 100px;
+        display: none;
+    }
+
+}
+.navbar-row a{
+    text-decoration: none;
+    color: #1c1c1c;
+}
+.navbar-col-icon{
+    position: relative;
+}
+.navbar-col-icon-hide{
+    animation: icon-hide 500ms;
+    animation-fill-mode: forwards;
+}
+.navbar-col-icon-show{
+    animation: icon-show 500ms;
+    animation-fill-mode: forwards;
+}
+@keyframes icon-hide {
+    from{
+        top: 50%;
+    }
+    to{
+        top: -100px;
+        display: none;
+    }
+}
+@keyframes icon-show {
+    from{
+        top: -100px;
+    }
+    to{
+        top: 50%;
+    }
+}
