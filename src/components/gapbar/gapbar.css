@@ -1,0 +1,17 @@
+.gap-title{
+    margin: 0;
+    color: #333631;
+}
+.gap-bar{
+    padding: 15px 0;
+    background-color: #f0f0f0;
+
+}
+.gap-content{
+    padding: 15px 60px;
+    text-align: left;
+}
+.gap-img{
+    height: 100%;
+    width: 100%;
+}
