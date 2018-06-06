@@ -117,7 +117,7 @@ export  default class Footprint extends Component{
         return (
             <div>
                 <ReactEcharts option={this.state.option} onEvents={onEvents}/>
-                <h>watch first</h>
+                <h1 className="home-title">先认识世界，再认识你</h1>
                 <Button className="dep">出发</Button>
             </div>
         )
