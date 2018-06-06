@@ -1,0 +1,19 @@
+#home-body-wrap{
+    position: relative;
+}
+#home-body{
+    position: absolute;
+    top: -5000px;
+    animation: fadein 300ms linear 3s;
+    animation-fill-mode: forwards;
+}
+@keyframes fadein {
+    from{
+        top: 20px;
+        opacity: 0;
+    }
+    to{
+        top: 0;
+        opacity: 1;
+    }
+}
