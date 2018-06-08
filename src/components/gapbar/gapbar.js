@@ -17,21 +17,33 @@ export default class Gapbar extends Component{
         }
         else{
             //检查style中有哪些值
-            let background,titleColor;
+            let background,titleColor,bkColor,titleSize;
+            let bk;
             if(style.hasOwnProperty('background')){
                 background=style.background;
+                bk={
+                    background:`url(${require(`../../assets/${background}.jpg`)}) 0 0 repeat-x`,
+                }
+            }
+            if(style.hasOwnProperty('bkColor')){
+                bkColor=style.bkColor;
+                bk={
+                    backgroundColor:bkColor
+                }
             }
             if(style.hasOwnProperty('titleColor')){
                 titleColor=style.titleColor;
             }
-            let img={
-                background:`url(${require(`../../assets/${background}.jpg`)}) 0 0 repeat-x`,
+            if(style.hasOwnProperty('titleSize')){
+                titleSize=style.titleSize;
             }
-            title=<Row className={'gap-bar'} style={img}>
-                <Col  span={8} offset={8}>
-                    <h1 className="gap-title" style={{color:titleColor}}>{this.props.title}</h1>
-                </Col>
-            </Row>
+            title=<Row className={'gap-bar'} style={bk}>
+                    <Col  span={8} offset={8}>
+                        <h1 className="gap-title" style={{color:titleColor,fontSize:titleSize}}>{this.props.title}</h1>
+                    </Col>
+                </Row>
+
+
         }
         return (
             <div>
