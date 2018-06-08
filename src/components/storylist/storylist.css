@@ -15,17 +15,28 @@
 .item:hover{
     cursor: pointer;
 }
+.item-content{
+    overflow: hidden;
+    display: -webkit-box;
+    /*autoprefixer: off*/
+    -webkit-box-orient: vertical;
+    /*autoprefixer: on*/
+    -webkit-line-clamp:3;
+    -moz-box-orient: vertical;
+    max-height: 100px;
+}
 .item-title{
     text-align: left;
-    font-size: 20px;
 }
 .item-img{
     width: 100%;
 }
 .item-imgdiv{
     padding: 5%;
-    width: 200px;
 }
 .item-col{
-    border-bottom: 1px solid #c1c1c1;
+}
+.story-list-row{
+    display: flex;
+    align-items: center;
 }

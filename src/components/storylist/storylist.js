@@ -10,51 +10,6 @@ const history=createHistory({
 export default class Storylist extends Component{
     constructor(props){
         super(props);
-        this.state=this.getInitialState();
-
-    }
-    data=[
-        {
-            id:0,
-            title:"成都",
-            subtitle:"从来没有想到自己以后会如此眷恋这个城市",
-            content:"this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.",
-            starttime:'2013-2-16',
-            money:600,
-            duration:6,
-            cover:'chengdu',
-        },
-        {
-            id:1,
-            title:"桂林",
-            subtitle:"很多一开始说好一起的事，最后都只剩下自己独自前行",
-            content:"this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.",
-            starttime:'2015-2-16',
-            money:1200,
-            duration:4,
-            cover:'guilin',
-        },
-        {
-            id:2,
-            title:"凤凰",
-            subtitle:"我还记得捉鸭子大赛的时候，有个女孩会等待那个少年回来",
-            content:"this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.this is my first time to visit here and i do not know what to write about.",
-            starttime:'2018-2-16',
-            money:800,
-            duration:3,
-            cover:'fenghuang',
-        },
-    ]
-    getInitialState(){
-        return {
-            timeline:[
-                {id:0,time:'2017-5-5',des:'稻城'},
-                {id:1,time:'2016-5-5',des:'桂林'},
-                {id:2,time:'2014-1-28',des:'凤凰'},
-                {id:3,time:'2012-7-5',des:'成都'},
-            ]
-
-        }
     }
     getTimeLines(){
         let lines=this.state.timeline.map((item)=>{
@@ -63,28 +18,52 @@ export default class Storylist extends Component{
         return lines;
     }
     toStoryDetail(id,event){
+        //找到对应的joruenyid
+        let item={};
+        let articles=this.props.articles;
+        for(let i in articles){
+            if(id==articles[i].journeyId){
+                item=articles[i];
+                break;
+            }
+        }
+        //传递数据
         history.push(`/story/detail/${id}`,{
-            data:this.data[id]
+            data:item
         });
         console.log('ssss')
     }
     render(){
+        const itemContent=function (title,content) {
+            return <div>
+                <Row>
+                    <Col className={"item-title"} lg={{span:12,offset:3}} xs={{span:13,offset:1}}><h2>{title}</h2></Col>
+                </Row>
+                <Row className={"story-list-row"}>
+                    <Col className={"item-col"}  lg={{span:12,offset:3}} xs={{span:13,offset:1}}>
+                        <div className={"item-content"} >
+                            {content}
+                        </div>
+                    </Col>
+                    <Col lg={{span:5}} xs={{span:9}} className={"story-list-col-img"}>
+                        <div className={"item-imgdiv"}><img className={"item-img"} alt="logo" src={pic} /></div>
+                    </Col>
+                </Row>
+            </div>
+        }
         return(
             <div id="body">
                 <div id="list">
-                    <List itemLayout="vertical" split dataSource={this.data} renderItem={item =>(
-                        <Row>
-                            <Col className={"item-col"} span={18} offset={3}>
-                                <List.Item className="item" key={item.id} extra={<div className={"item-imgdiv"}><img className={"item-img"} alt="logo" src={pic} /></div>} onClick={this.toStoryDetail.bind(this,item.id)}>
-                                    <List.Item.Meta title={<div className={"item-title"}>{item.title}</div>} description={item.content}/>
-                                </List.Item>
-                            </Col>
-                        </Row>
+                    <List itemLayout="vertical" split dataSource={this.props.articles} renderItem={item =>(
+                        <List.Item className="item" key={item.journeyId}   onClick={this.toStoryDetail.bind(this,item.journeyId)}>
+                            {itemContent(item.title,item.content)}
+                        </List.Item>
+
                     )}
 
                     />
                 </div>
-                /*
+                {/*
                 <div id='aside'>
                     <h1>Time</h1>
                     <div id="timeline">
@@ -93,7 +72,7 @@ export default class Storylist extends Component{
                         </Timeline>
                     </div>
 
-                </div>*/
+                </div>*/}
             </div>
         )
     }

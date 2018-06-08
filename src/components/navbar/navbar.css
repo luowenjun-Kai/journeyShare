@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    padding-top: 8px;
 }
 .navbar-nounderline{
     border-bottom: none;
@@ -55,6 +56,21 @@
         opacity: 0;
         display: none;
     }
+}
+.navbar-logo{
+    color: #6c848d;
+}
+.navbar-logo:hover{
+    cursor: pointer;
+}
+.navbar-logo span{
+    margin-right: 8px;
+
+}
+.navbar-icon{
+    vertical-align: middle;
+    font-size: 24px;
+
 }
 .navbar-col{
     position: relative;

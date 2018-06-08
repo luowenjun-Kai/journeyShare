@@ -59,7 +59,7 @@ export default class Navbar extends Component {
         if(divs.length==2){
             let icon=divs[0];
             let title=divs[1];
-            console.log(target);
+            //console.log(target);
             //图标载入动画
             icon.className="navbar-col-icon-show";
             //文字载入动画
@@ -76,22 +76,11 @@ export default class Navbar extends Component {
         return (
             <div>
                 <Row className="navbar">
-                    <Col lg={{span:8}} sm={{span:0}} xs={{span:0}} className="logo">Logo
-                    </Col>
-                    <Col lg={{span:0}} sm={{span:8}} xs={{span:8}}>
+
+                    <Col lg={{span:8}} sm={{span:8}} xs={{span:8}}>
                         {/*小屏导航栏*/}
-                        {/*
-                        <Menu mode={"vertical"}>
-                            <SubMenu title={<span><Icon type={"menu-unfold"}/>Logo</span>}>
-                                <Menu.Item><a href="/">首页</a></Menu.Item>
-                                <Menu.Item><a href="/story">旅行奇遇</a></Menu.Item>
-                                <Menu.Item><a href="/share">照片分享</a></Menu.Item>
-                                <Menu.Item><a href="/support">支持</a></Menu.Item>
-                            </SubMenu>
-                        </Menu>
-                        */}
-                        <div onClick={this.showNav}>
-                            logo
+                        <div className={"navbar-logo"} onClick={this.showNav}>
+                            <span>MR</span><Icon className={"navbar-icon"} type={"global"} />
                         </div>
                     </Col>
                     <Col lg={{span:4,offset:2}} sm={{span:8}} xs={{span:10}} className="search">
@@ -106,11 +95,8 @@ export default class Navbar extends Component {
                             <Menu.Item><a href="/support">支持</a></Menu.Item>
                         </Menu>
                     </Col>
-                    {/*弹窗
-
-                    */}
-
                 </Row>
+                {/*弹出层*/}
                 <div ref={this.refShadow} className={"navbar-shadow"} onClick={this.showNav}></div>
                 <div ref={this.refModal} className={'navbar-modal'}>
                     <Row className={"navbar-row"}>
