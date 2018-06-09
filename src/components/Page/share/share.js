@@ -1,40 +1,41 @@
+import './share.css'
 import React,{Component} from 'react';
 import Sharelist from '../../sharelist/sharelist';
 import Gapbar from '../../gapbar/gapbar';
 export default class SharePage extends Component{
     data=[
         {
-        name:"图片1",
+        name:"1",
         src:""
     },{
-        name:"图片2",
-        src:""
-    },{
-        name:"图片2",
-        src:""
-    },{
-        name:"图片2",
-        src:""
-    },{
-        name:"图片2",
+        name:"2",
         src:""
     },{
         name:"",
         src:""
     },{
-        name:"图片2",
+        name:"",
         src:""
     },{
-        name:"图片2",
+        name:"3",
+        src:""
+    },{
+        name:"4",
+        src:""
+    },{
+        name:"5",
+        src:""
+    },{
+        name:"",
         src:""
     }]
     render(){
-        const title=<div>AHAI<div style={{fontSize:'10px'}}>hai</div></div>
+        const title=<div className={'share-bk'}>AHAI<div style={{fontSize:'10px'}}>虚心接受，坚决不改</div></div>
         return(
-            <div>
-                <Gapbar title={title} content={""} style={{bkColor:'#fff',titleSize:'15vw'}}/>
-                <Gapbar title={"Works"} content={""}/>
-                <Sharelist grid={{column:4}} data={this.data}></Sharelist>
+            <div >
+                <Gapbar  title={title} style={{background:'bk',titleSize:'15vw',titleColor:'#fff'}}/>
+                <Gapbar title={"Works"} style={{bkColor:'#fff'}}/>
+                <Sharelist  grid={{column:4}} data={this.data}></Sharelist>
             </div>
 
         )

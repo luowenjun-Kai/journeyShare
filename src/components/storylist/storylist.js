@@ -1,5 +1,6 @@
 import './storylist.css'
 import pic from  '../../assets/homeimg.jpg'
+import static2 from '../../assets/static2.JPG'
 import React,{Component}from 'react';
 import {List,Row,Col} from 'antd';
 import {Timeline} from 'antd';
@@ -46,7 +47,7 @@ export default class Storylist extends Component{
                         </div>
                     </Col>
                     <Col lg={{span:5}} xs={{span:9}} className={"story-list-col-img"}>
-                        <div className={"item-imgdiv"}><img className={"item-img"} alt="logo" src={pic} /></div>
+                        <div className={"item-imgdiv"}><img className={"item-img"} alt="logo" src={static2} /></div>
                     </Col>
                 </Row>
             </div>

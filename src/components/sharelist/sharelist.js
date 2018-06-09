@@ -1,5 +1,4 @@
 import './sharelist.css'
-import pic from '../../assets/homeimg.jpg'
 import React,{Component} from 'react';
 import {List,Row,Col} from 'antd';
 
@@ -19,7 +18,7 @@ export default class Sharelist extends Component{
             }
             else{
                 return <div  className={"share-img"}>
-                    <img alt={name} src={pic}></img>
+                    <img alt={name} src={require(`../../assets/share/${name}.png`)}></img>
                 </div>
             }
         };
