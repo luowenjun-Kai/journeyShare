@@ -30,9 +30,9 @@ export default class SharePage extends Component{
         src:""
     }]
     render(){
-        const title=<div className={'share-bk'}>AHAI<div style={{fontSize:'10px'}}>虚心接受，坚决不改</div></div>
+        const title=<div>AHAI<div style={{fontSize:'10px'}}>虚心接受，坚决不改</div></div>
         return(
-            <div >
+            <div className={'share-bk'}>
                 <Gapbar  title={title} style={{background:'bk',titleSize:'15vw',titleColor:'#fff'}}/>
                 <Gapbar title={"Works"} style={{bkColor:'#fff'}}/>
                 <Sharelist  grid={{column:4}} data={this.data}></Sharelist>
