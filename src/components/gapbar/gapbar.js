@@ -6,7 +6,7 @@ export default class Gapbar extends Component{
         super(props);
     }
     render(){
-        let title=null;
+        let title=null,content=null;
         let style=this.props.style;
         if(style===undefined){
             title=<Row className={'gap-bar'}>
@@ -45,16 +45,20 @@ export default class Gapbar extends Component{
 
 
         }
+        //判断有无内容
+        if(this.props.hasOwnProperty('content')){
+            content=<Row>
+                <Col>
+                    <div className={"gap-content"} >
+                        {this.props.content}
+                    </div>
+                </Col>
+            </Row>
+        }
         return (
             <div>
                 {title}
-                <Row>
-                    <Col>
-                        <div className={"gap-content"} >
-                            {this.props.content}
-                        </div>
-                    </Col>
-                </Row>
+                {content}
             </div>
         )
     }
