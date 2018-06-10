@@ -1,6 +1,5 @@
 import './storylist.css'
-import pic from  '../../assets/homeimg.jpg'
-import static2 from '../../assets/static2.JPG'
+import url from '../../config';
 import React,{Component}from 'react';
 import {List,Row,Col} from 'antd';
 import {Timeline} from 'antd';
@@ -35,19 +34,25 @@ export default class Storylist extends Component{
         console.log('ssss')
     }
     render(){
-        const itemContent=function (title,content) {
+        const itemContent=function (item) {
             return <div>
                 <Row>
-                    <Col className={"item-title"} lg={{span:12,offset:3}} xs={{span:13,offset:1}}><h2>{title}</h2></Col>
+                    <Col className={"item-title"} lg={{span:12,offset:3}} xs={{span:13,offset:1}}><h2>{item.title}</h2><span>{new Date(item.createat).toLocaleDateString()}</span></Col>
+
                 </Row>
                 <Row className={"story-list-row"}>
-                    <Col className={"item-col"}  lg={{span:12,offset:3}} xs={{span:13,offset:1}}>
+                    <Col className={"item-col"}  lg={{span:0}} xs={{span:13,offset:1}}>
                         <div className={"item-content"} >
-                            {content}
+                            {item.content}
                         </div>
                     </Col>
-                    <Col lg={{span:5}} xs={{span:9}} className={"story-list-col-img"}>
-                        <div className={"item-imgdiv"}><img className={"item-img"} alt="logo" src={static2} /></div>
+                    <Col className={"item-col"}  lg={{span:15,offset:3}} xs={{span:0}}>
+                        <div>
+                            {item.content}
+                        </div>
+                    </Col>
+                    <Col lg={{span:6}} xs={{span:9}} className={"story-list-col-img"}>
+                        <div className={"item-imgdiv"}><img className={"item-img"} alt="cover" src={`${url.images}/${item.cover}/${item.journeyId}/5.jpg`} /></div>
                     </Col>
                 </Row>
             </div>
@@ -57,7 +62,7 @@ export default class Storylist extends Component{
                 <div id="list">
                     <List itemLayout="vertical" split dataSource={this.props.articles} renderItem={item =>(
                         <List.Item className="item" key={item.journeyId}   onClick={this.toStoryDetail.bind(this,item.journeyId)}>
-                            {itemContent(item.title,item.content)}
+                            {itemContent(item)}
                         </List.Item>
 
                     )}

@@ -13,6 +13,9 @@
     color: #c1c1c1;
     font-style: italic;
 }
+.writer p{
+    margin-bottom: 0;
+}
 .article{
-    margin-top: 12%;
+    margin-top: 18%;
 }
