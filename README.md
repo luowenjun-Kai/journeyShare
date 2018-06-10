@@ -15,7 +15,7 @@ If you want to check what is it like,click [here](http://39.108.236.3).
 - Support
   <br>the forth page is a unpublished page,so keep curiosity.
   
-##Component can be reuse
+## Component can be reuse
 - PopupWin
   <br>this component is now coupling to a component called navbar,I haven't extract it yet cause it makes no influence in my project now,If you want to check how it works,check navbar component.
 - Gapbar
