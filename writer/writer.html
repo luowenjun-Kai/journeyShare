@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>记录添加页面</title>
     <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+    <script src="static/jquery-3.3.1.min.js"></script>
+    <script src="static/writer.js"></script>
 </head>
 <body>
 <div class="container">
     <div><h1 class="text-center">地图漫步后台数据插入</h1></div>
     <p class="text-muted border-bottom">添加游记</p>
-    <form>
+    <form id="form-journey">
         <div class="form-group row">
             <label for="deptime" class="col-sm-2 col-form-label ">出发时间</label>
             <input id="deptime" class="col-sm-2 form-control-plaintext border" placeholder="2001/9/2">
@@ -39,7 +41,7 @@
         </div>
     </form>
     <p class="text-muted border-bottom">添加文章</p>
-    <form>
+    <form id="form-article">
         <div class="form-group row">
             <label for="title" class="col-sm-2 col-form-label" >标题</label>
             <input id="title" class="col-sm-3 form-control-plaintext border">
@@ -57,10 +59,15 @@
             <input id="dest" class="col-sm-3 form-control-plaintext border">
         </div>
         <div class="form-group row">
+            <label for="author" class="col-sm-2 col-form-label" >作者</label>
+            <input id="author" class="col-sm-3 form-control-plaintext border" value="阿海">
+        </div>
+        <div class="form-group row">
             <label for="journeyid" class="col-sm-2 col-form-label" >对应id</label>
             <select id="journeyid" class="col-sm-2 form-control border">
                 <option value="暂无" selected>暂无</option>
             </select>
+            <button id='atcleflash' class="btn btn-primary">刷新</button>
         </div>
         <div class="form-group row">
             <label for="content" class="col-sm-2 col-form-label" >正文</label>
