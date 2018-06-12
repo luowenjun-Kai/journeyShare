@@ -38,9 +38,7 @@ export default class Gapbar extends Component{
                 titleSize=style.titleSize;
             }
             title=<Row className={'gap-bar'} style={bk}>
-                    <Col  span={8} offset={8}>
-                        <h1 className="gap-title" style={{color:titleColor,fontSize:titleSize}}>{this.props.title}</h1>
-                    </Col>
+                <h1 className="gap-title" style={{color:titleColor,fontSize:titleSize}}>{this.props.title}</h1>
                 </Row>
 
 
