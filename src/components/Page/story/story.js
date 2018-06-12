@@ -63,7 +63,7 @@ export default class StoryPage extends Component{
         return (
             <div>
                 <Homeimg content={this.state.topup} clickEvent={this.toStoryDetail.bind(this)}/>
-                <Gapbar title={'往事'} content={""}/>
+                <Gapbar title={'往事'} content={""} style={{bkColor:'#6c848d',titleColor:'#333631'}}/>
                 <Storylist articles={this.state.articles}/>
             </div>
         )

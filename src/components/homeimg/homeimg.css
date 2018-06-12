@@ -6,6 +6,10 @@
 .homepic img{
     width: 100%;
     height: 100%;
+    border: 5px solid #6c848d;
+}
+.homepic h1{
+    color: #333631;
 }
 .writer{
     position: absolute;
@@ -18,4 +22,5 @@
 }
 .article{
     margin-top: 18%;
+    color: #56564b;
 }
