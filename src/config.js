@@ -1,7 +1,11 @@
+//const baseurl='http://localhost'
+const baseurl='http://39.108.236.3';
+const serverurl=baseurl + ':30001';
 const url={
-    images:'http://39.108.236.3/images',
-    getArticles:'http://39.108.236.3:30001/api/articles',
-    getJourney:'http://39.108.236.3:30001/api/detail?journeyId='
+    images:baseurl + '/images',
+    getArticles:serverurl + '/api/articles',
+    getJourney: serverurl + '/api/detail?journeyId=',
+    getJneyByDes:serverurl + '/api/provDes?province='
 }
 
 module.exports=url;
