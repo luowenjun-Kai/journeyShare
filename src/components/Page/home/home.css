@@ -12,7 +12,7 @@
     width: 100%;
     position: absolute;
     top: -5000px;
-    animation: fadein 300ms linear 3s;
+    animation: fadein 300ms linear 1s;
     animation-fill-mode: forwards;
 }
 @keyframes fadein {
