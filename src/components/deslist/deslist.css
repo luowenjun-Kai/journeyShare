@@ -9,6 +9,9 @@
     border: 1px solid #c1c1c1;
     overflow: hidden;
 }
+.deslist-div-col:hover{
+    cursor: pointer;
+}
 .deslist-div-img{
     position: absolute;
     top: 0;

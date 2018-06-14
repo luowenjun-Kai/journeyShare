@@ -7,6 +7,10 @@ import Deslist from '../../deslist/deslist';
 import { Button } from 'antd'
 import axios from 'axios';
 import url from '../../../config';
+import createHistory from 'history/createBrowserHistory';
+const history=createHistory({
+    forceRefresh:true
+})
 export default class HomePage extends Component{
     constructor(props){
         super(props);
@@ -16,8 +20,10 @@ export default class HomePage extends Component{
         return {
             destination:'',
             rawdesdata:'',
+            journey:''
         }
     }
+    //当用户点击地图区域调用的函数
     setDes(des){
         let cdes=this.state.destination;
         console.log("you choose the "+des);
@@ -29,9 +35,10 @@ export default class HomePage extends Component{
             //处理数据传入组件
             for(let i in data){
                 let desarr=data[i].destination.split('-');
+                let time=url.setTime(data[i].deptime);
                 let temp={
                     journeyId:data[i].journeyId,
-                    time:new Date(data[i].deptime).toLocaleDateString(),
+                    time:time,
                     des:desarr[1],
                     cover:desarr[2]
                 }
@@ -46,6 +53,19 @@ export default class HomePage extends Component{
 
 
     }
+    //当用户点击对应游记调用的函数
+    setJourney(journey){
+        console.log("you choose the journey  "+journey);
+        let rawdata=this.state.rawdesdata;
+        for(let i in rawdata){
+            if(journey == rawdata[i].journeyId){
+                history.push(`/story/detail/${journey}`,{
+                    detail:rawdata[i]
+                });
+                break;
+            }
+        }
+    }
     render() {
         const title=<div>旅途<p className={"home-body-des-tips"}>沿途风景如歌变化再辗转，人山人海的对白换一句等待。</p></div>
         const content=function () {
@@ -54,7 +74,7 @@ export default class HomePage extends Component{
             }
             else{
                 let des=this.state.destination;
-                return <div className={"home-body-des"}><Deslist data={des}/></div>
+                return <div className={"home-body-des"}><Deslist data={des} setJourney={this.setJourney.bind(this)}/></div>
             }
         }
         return (

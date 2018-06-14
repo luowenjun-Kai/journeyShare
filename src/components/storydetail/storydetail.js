@@ -13,27 +13,34 @@ export  default class StoryDetail extends Component{
     }
     componentDidMount(){
         let journeyid=this.state.article.journeyId;
-        console.log('detail 准备发送' + journeyid);
-        axios.get(url.getJourney + journeyid ).then((res)=>{
-            let data=res.data;
-            console.log('in detail the data is ' + JSON.stringify(data));
-            data.deptime=new Date(data.deptime).toLocaleDateString();
-            this.setState({
-                journey:data
+        if(journeyid===''){
+            //获取文章信息
+            axios.get(url.getAtclByid + this.state.journey.journeyId).then((res)=>{
+                let data=res.data;
+                this.setState({
+                    article:data
+                })
             })
-        })
+        }
+        else{
+            //获取游记信息
+            console.log('detail 准备发送' + journeyid);
+            axios.get(url.getJourney + journeyid ).then((res)=>{
+                let data=res.data;
+                console.log('in detail the data is ' + JSON.stringify(data));
+                data.deptime=url.setTime(data.deptime);
+                this.setState({
+                    journey:data
+                })
+            })
+        }
+
     }
     getInitialState(){
         //初始化文章和行程细节
         let data=this.props.location.state.data;
-        let detail={
-            duration:0,
-            cost:0,
-            photomacth:'-',
-            route:'-',
-            deptime:''
-        };
-        console.log(data);
+        let detail=this.props.location.state.detail;
+        console.log(data + " " + detail);
         if(data===undefined){
             data={
                 title:'',
@@ -43,6 +50,16 @@ export  default class StoryDetail extends Component{
                 content:'',
                 author:'',
                 journeyId:''
+            }
+        }
+        if(detail===undefined){
+            detail={
+                journeyId:'',
+                deptime:'',
+                duration:0,
+                cost:0,
+                route:'',
+                photomacth:''
             }
         }
 
