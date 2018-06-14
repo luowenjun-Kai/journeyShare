@@ -18,6 +18,10 @@ export default class StoryPage extends Component{
         console.log('获取数据');
         axios.get(url.getArticles).then(res=>{
             let data=res.data;
+            //处理时间
+            data.forEach(function (item) {
+                item.createat=url.setTime(item.createat);
+            })
             let topup=data.shift();
             this.setState({
                 topup:topup,

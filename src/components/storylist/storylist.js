@@ -37,7 +37,7 @@ export default class Storylist extends Component{
         const itemContent=function (item) {
             return <div>
                 <Row>
-                    <Col className={"item-title"} lg={{span:12,offset:3}} xs={{span:13,offset:1}}><h2>{item.title}</h2><span>{new Date(item.createat).toLocaleDateString()}</span></Col>
+                    <Col className={"item-title"} lg={{span:12,offset:3}} xs={{span:13,offset:1}}><h2>{item.title}</h2><span>{item.createat}</span></Col>
 
                 </Row>
                 <Row className={"story-list-row"}>

@@ -29,7 +29,7 @@ export default class homeimg extends Component{
                             <h1>{content.title}</h1>
                             <div className={"writer"}>
                                 <p>{content.author}</p>
-                                <p>{new Date(content.createat).toLocaleDateString()}</p>
+                                <p>{content.createat}</p>
                             </div>
 
                             <p className="article">{content.content}</p>
