@@ -31,10 +31,15 @@ export default class Storylist extends Component{
         history.push(`/story/detail/${id}`,{
             data:item
         });
-        console.log('ssss')
+        //console.log('ssss')
     }
     render(){
         const itemContent=function (item) {
+            //处理文章段落显示
+            let content=item.content;
+            content=content.split("<br>").map((item)=>{
+                return <p>{item}</p>
+            })
             return <div>
                 <Row>
                     <Col className={"item-title"} lg={{span:12,offset:3}} xs={{span:13,offset:1}}><h2>{item.title}</h2><span>{item.createat}</span></Col>
@@ -43,12 +48,12 @@ export default class Storylist extends Component{
                 <Row className={"story-list-row"}>
                     <Col className={"item-col"}  lg={{span:0}} xs={{span:13,offset:1}}>
                         <div className={"item-content"} >
-                            {item.content}
+                            {content}
                         </div>
                     </Col>
                     <Col className={"item-col"}  lg={{span:15,offset:3}} xs={{span:0}}>
-                        <div>
-                            {item.content}
+                        <div className={"item-content-lg"}>
+                            {content}
                         </div>
                     </Col>
                     <Col lg={{span:6}} xs={{span:9}} className={"story-list-col-img"}>

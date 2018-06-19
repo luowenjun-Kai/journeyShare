@@ -29,3 +29,11 @@
     width: 100%;
     height: 100%;
 }
+.story-detail-content{
+    text-align: left;
+}
+.story-detail-content p{
+    margin: 0;
+    padding: 0;
+    text-indent: 2em;
+}

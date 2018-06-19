@@ -36,6 +36,7 @@ export default class HomePage extends Component{
             for(let i in data){
                 let desarr=data[i].destination.split('-');
                 let time=url.setTime(data[i].deptime);
+                data[i].deptime=time;
                 let temp={
                     journeyId:data[i].journeyId,
                     time:time,

@@ -23,4 +23,10 @@
 .article{
     margin-top: 18%;
     color: #56564b;
+    text-align: left;
+}
+.article p{
+    margin: 0;
+    padding: 0;
+    text-indent: 2em;
 }

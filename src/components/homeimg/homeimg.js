@@ -11,6 +11,11 @@ export default class homeimg extends Component{
     }
     render(){
         const content=this.props.content;
+        //处理文章段落
+        let article=content.content;
+        article=article.split("<br>").map((item)=>{
+            return <p>{item}</p>
+        })
         return (
             <div>
                 <Row>
@@ -32,7 +37,7 @@ export default class homeimg extends Component{
                                 <p>{content.createat}</p>
                             </div>
 
-                            <p className="article">{content.content}</p>
+                            <div className="article">{article}</div>
 
                         </div>
                     </Col>

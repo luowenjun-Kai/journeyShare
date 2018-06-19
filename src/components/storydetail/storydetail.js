@@ -72,7 +72,12 @@ export  default class StoryDetail extends Component{
         let article=this.state.article;
         let journey=this.state.journey;
         let baseurl=`${url.images}/${article.cover}/${article.journeyId}`;
-        console.log(journey)
+        //处理文章段落
+        let content=article.content;
+        content=content.split("<br>").map((item)=>{
+            return <p>{item}</p>
+        })
+        //console.log(content)
         return (
             <div className="body">
                 <div className="detail-title">
@@ -114,7 +119,9 @@ export  default class StoryDetail extends Component{
                             </Panel>
                             <Panel header={"故事分享"} key={"4"}>
                                 <Col lg={{span:24}}>
-                                    {article.content}
+                                    <div className={"story-detail-content"}>
+                                        {content}
+                                    </div>
                                 </Col>
                             </Panel>
                         </Collapse>
