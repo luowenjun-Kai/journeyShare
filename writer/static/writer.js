@@ -37,6 +37,8 @@ function setArticle() {
     console.log('article');
     let elements=$('#form-article input:lt(5)');
     let content=$('#content').val();
+    //保留输入换行符
+    content=content.replace(/\n/g,'<br>');
     let id=$('#journeyid ').val();
     let creatat=new Date();
     let data={
