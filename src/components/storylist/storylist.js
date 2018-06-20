@@ -38,8 +38,8 @@ export default class Storylist extends Component{
             //处理文章段落显示
             let content=item.content;
             let contentsm=content.replace(/<br>/g,"");
-            content=content.split("<br>").map((item)=>{
-                return <p>{item}</p>
+            content=content.split("<br>").map((item,i)=>{
+                return <p key={i}>{item}</p>
             });
             return <div>
                 <Row>

@@ -13,8 +13,8 @@ export default class homeimg extends Component{
         const content=this.props.content;
         //处理文章段落
         let article=content.content;
-        article=article.split("<br>").map((item)=>{
-            return <p>{item}</p>
+        article=article.split("<br>").map((item,i)=>{
+            return <p key={i}>{item}</p>
         })
         return (
             <div>

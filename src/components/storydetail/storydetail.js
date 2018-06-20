@@ -9,7 +9,8 @@ export  default class StoryDetail extends Component{
     constructor(props){
         super(props);
         this.state=this.getInitialState();
-
+        this.refShadow=React.createRef();
+        this.refModal=React.createRef();
     }
     componentDidMount(){
         let journeyid=this.state.article.journeyId;
@@ -65,7 +66,30 @@ export  default class StoryDetail extends Component{
 
         return {
             article:data,
-            journey:detail
+            journey:detail,
+            shadow:false
+        }
+    }
+    showShadow(event){
+        let modal=this.refModal.current;
+        let shadow=this.refShadow.current;
+        this.state.shadow=!this.state.shadow;
+        //如果出现阴影
+        if(this.state.shadow){
+            shadow.style.display='block';
+            modal.setAttribute('class','detail-modal detail-modal-show');
+            let img=event.target;
+            let imgUrl=img.getAttribute('src');
+           // console.log(imgUrl)
+            let imgtag=modal.getElementsByTagName('img')[0];
+            imgtag.setAttribute('src',imgUrl);
+           // modal.className="navbar-modal navbar-modal-show";
+
+        }
+        else{
+            shadow.style.display='none';
+            modal.setAttribute('class','detail-modal detail-modal-hide');
+           // modal.className="navbar-modal navbar-modal-hide"
         }
     }
     render() {
@@ -74,20 +98,23 @@ export  default class StoryDetail extends Component{
         let baseurl=`${url.images}/${article.cover}/${article.journeyId}`;
         //处理文章段落
         let content=article.content;
-        content=content.split("<br>").map((item)=>{
-            return <p>{item}</p>
+        content=content.split("<br>").map((item,i)=>{
+            return <p key={i}>{item}</p>
         })
         //console.log(content)
         return (
             <div className="body">
+                {/*弹出层*/}
+                <div className={"detail-shadow"} ref={this.refShadow} onClick={this.showShadow.bind(this)}></div>
+                <div className={"detail-modal" } ref={this.refModal}><img></img></div>
                 <div className="detail-title">
                     <Row>
                         <Col lg={{span:8,offset:8}}><h1>{article.title}</h1></Col>
                         <Col lg={{span:24,offset:5}}>{article.subtitle}</Col>
                     </Row>
                 </div>
-                <Row id="quick">
-                    <Col sm={{span:24}} lg={{span:12}} className="images">
+                <Row id="quick" >
+                    <Col sm={{span:24}} lg={{span:12}} className="images" onClick={this.showShadow.bind(this)}>
                         <Row gutter={8} className={"row"}>
                             <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/1.jpg'} alt={""}></img></div></Col>
                             <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/2.jpg'} alt={""}></img></div></Col>
