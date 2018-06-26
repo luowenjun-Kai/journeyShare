@@ -4,6 +4,7 @@ import React,{Component} from 'react';
 import { Row,Col} from 'antd';
 import { Collapse } from 'antd';
 import axios from 'axios';
+import ReactEcharts from 'echarts-for-react'
 const Panel=Collapse.Panel;
 export  default class StoryDetail extends Component{
     constructor(props){
@@ -70,14 +71,15 @@ export  default class StoryDetail extends Component{
             {type:'hotel',cost:500},
             {type:'transport',cost:100},
             {type:'shop',cost:0},
-            {type:'menpiao',cost:0},
+            {type:'scenic',cost:0},
             {type:'other',cost:15}
         ]
         return {
             article:data,
             journey:detail,
             shadow:false,
-            display:'photos'
+            display:'photos',
+            overview:overview
         }
     }
     showShadow(event){
@@ -121,7 +123,63 @@ export  default class StoryDetail extends Component{
         })
         //console.log(this.state.display)
     }
+    getOptions(){
+        //图标数据转换
+        let rawtext=this.state.article.destination
+        let rawdata=this.state.overview;
+        let duration=this.state.journey.duration;
+        let text=rawtext + duration + '天行程消费分布图'
+        let data=rawdata.map((item)=>{
+            let type=item.type;
+            let name;
+            switch (type){
+                case 'food':
+                    name='饮食';
+                    break;
+                case 'hotel':
+                    name='住宿';
+                    break;
+                case 'transport':
+                    name='交通';
+                    break;
+                case 'shop':
+                    name='购物';
+                    break;
+                case 'scenic':
+                    name='景点';
+                    break;
+                case 'other':
+                    name='其他';
+                    break;
+            }
+            return {
+                name:name,
+                value:item.cost
+            }
+        })
+        return {
+            title: {
+                text: text,
+                subtext: '',
+                x: 'center'
+            },
+            legend: {
+                x: 'center',
+                y: 'bottom',
+                data: ['饮食', '住宿', '交通', '景点', '购物', '其他']
+            },
+            series:[
+                {
+                    name:'半径模式',
+                    type:'pie',
+                    radius:['10%','50%'],
+                    roseType:'radius',
+                    center : ['50%', '50%'],
+                    data:data
+                }]
+        }
 
+    }
     render() {
         let article=this.state.article;
         let journey=this.state.journey;
@@ -134,7 +192,7 @@ export  default class StoryDetail extends Component{
         let whatToshow;
         if(this.state.display=='photos'){
             whatToshow=
-                <Col sm={{span:24}} lg={{span:12}} className="images" onClick={this.showShadow.bind(this)}>
+                <Col sm={{span:24}} lg={{span:12}}  onClick={this.showShadow.bind(this)}>
                     <Row gutter={8} className={"row"}>
                         <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/1.jpg'} alt={""}></img></div></Col>
                         <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/2.jpg'} alt={""}></img></div></Col>
@@ -154,13 +212,13 @@ export  default class StoryDetail extends Component{
         }
         else if(this.state.display=='overview'){
             whatToshow=
-                <Col>
-                    此处是概览
+                <Col sm={{span:24}} lg={{span:12}}>
+                    <ReactEcharts option={this.getOptions()}/>
                 </Col>
         }
         else if(this.state.display=='route'){
             whatToshow=
-                <Col>
+                <Col sm={{span:24}} lg={{span:12}}>
                     此处是线路
                 </Col>
         }
