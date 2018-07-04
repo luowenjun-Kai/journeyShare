@@ -10,14 +10,15 @@
 }
 #home-body{
     width: 100%;
-    position: absolute;
-    top: -5000px;
+    position: relative;
+    top: 5000px;
     animation: fadein 300ms linear 1s;
     animation-fill-mode: forwards;
+    min-height: 400px;
 }
 @keyframes fadein {
     from{
-        top: 20px;
+        top: 5000px;
         opacity: 0;
     }
     to{

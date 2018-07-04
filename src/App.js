@@ -8,10 +8,12 @@ import StoryPage from './components/Page/story/story';
 import HomePage from './components/Page/home/home';
 import SharePage from './components/Page/share/share';
 import SupportPage from './components/Page/support/support';
+import Footer from './components/footer/footer'
 class App extends Component {
   render() {
     return (
       <div className="App">
+
           <Router >
               <div>
                   <Navbar/>
@@ -20,8 +22,10 @@ class App extends Component {
                   <Route exact path='/story/detail/:articleID' component={StoryDetail}/>
                   <Route exact path='/share' component={SharePage}/>
                   <Route exact path='/support' component={SupportPage}/>
+
               </div>
           </Router>
+          <Footer></Footer>
       </div>
     );
   }
