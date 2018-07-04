@@ -26,7 +26,7 @@ export  default class Footprint extends Component{
         {"name":"广西","cp":[108.2813,23.6426],value:2},
         {"name":"湖南","cp":[111.5332,27.3779],value:1},
         {"name":"陕西","cp":[109.5996,35.6396],value:0},
-        {"name":"广东","cp":[113.4668,22.8076],value:1},
+        {"name":"广东","cp":[113.4668,22.8076],value:2},
         {"name":"吉林","cp":[126.4746,43.5938],value:0},
         {"name":"河北","cp":[115.4004,37.9688],value:0},
         {"name":"湖北","cp":[112.2363,31.1572],value:0},

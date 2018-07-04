@@ -16,8 +16,10 @@ export  default class StoryDetail extends Component{
     }
     componentDidMount(){
         let journeyid=this.state.article.journeyId;
+        let costJid='';
         if(journeyid===''){
             //获取文章信息
+            costJid=this.state.journey.journeyId;
             axios.get(url.getAtclByid + this.state.journey.journeyId).then((res)=>{
                 let data=res.data;
                 this.setState({
@@ -27,6 +29,7 @@ export  default class StoryDetail extends Component{
         }
         else{
             //获取游记信息
+            costJid=journeyid;
             console.log('detail 准备发送' + journeyid);
             axios.get(url.getJourney + journeyid ).then((res)=>{
                 let data=res.data;
@@ -35,8 +38,23 @@ export  default class StoryDetail extends Component{
                 this.setState({
                     journey:data
                 })
+                return;
             })
         }
+        axios.get(url.getCost + costJid).then((res)=>{
+            //处理数据符合格式
+            let data=[];
+            Object.keys(res.data).forEach((item)=>{
+                let obj={
+                    type:item,
+                    cost:res.data[item]
+                }
+                data.push(obj)
+            });
+            this.setState({
+                overview:data
+            })
+        })
 
     }
     getInitialState(){
@@ -66,14 +84,7 @@ export  default class StoryDetail extends Component{
                 photomacth:''
             }
         }
-        overview=[
-            {type:'food',cost:200},
-            {type:'hotel',cost:500},
-            {type:'transport',cost:100},
-            {type:'shop',cost:0},
-            {type:'scenic',cost:0},
-            {type:'other',cost:15}
-        ]
+        overview=[]
         return {
             article:data,
             journey:detail,
@@ -167,6 +178,10 @@ export  default class StoryDetail extends Component{
                 x: 'center',
                 y: 'bottom',
                 data: ['饮食', '住宿', '交通', '景点', '购物', '其他']
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c} ({d}%)"
             },
             series:[
                 {
