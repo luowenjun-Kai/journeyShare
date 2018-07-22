@@ -27,6 +27,30 @@
     height: 100%;
     transform: translate(-50%,-50%) scale(1.5);
 }
+.route-col{
+    position: relative;
+}
+.route-col .route-footer{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    text-align: left;
+}
+.route-col .route-footer span{
+    background-color: white;
+    color: #6c848d;
+    margin: 6px;
+    height: 16px;
+    width: 16px;
+}
+.route-col .route-footer span img{
+    width: 16px;
+    height: 16px;
+}
+.story-detail-route p{
+    text-align: left;
+}
 .story-detail-content{
     text-align: left;
 }
