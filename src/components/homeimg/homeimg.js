@@ -14,7 +14,13 @@ export default class homeimg extends Component{
         //处理文章段落
         let article=content.content;
         article=article.split("<br>").map((item,i)=>{
-            return <p key={i}>{item}</p>
+            if(item==""){
+                return <br/>
+            }
+            else{
+                return <p key={i}>{item}</p>
+            }
+
         })
         return (
             <div>
