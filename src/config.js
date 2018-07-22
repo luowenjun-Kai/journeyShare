@@ -8,6 +8,7 @@ const url={
     getJneyByDes:serverurl + '/api/provDes?province=',
     getAtclByid:serverurl + '/api/getAtclbyid?journeyId=',
     getCost:serverurl+'/api/getcost?journeyId=',
+    getSiteByDes:serverurl + '/api/getsite?destination=',
     getbeian:"http://www.miitbeian.gov.cn",
     setTime:function (t) {
         console.log(t)
