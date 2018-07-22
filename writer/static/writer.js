@@ -29,7 +29,7 @@ function setJourney() {
     }
     console.log("准备发送数据： " + JSON.stringify(data));
     $.post(insertJour,data,function (res) {
-        console.log(JSON.stringify(res));
+        alert('ok');
     })
 
 }
@@ -38,7 +38,7 @@ function setArticle() {
     let elements=$('#form-article input:lt(5)');
     let content=$('#content').val();
     //保留输入换行符
-    content=content.replace(/\n/g,'<br>');
+    let tcontent=content.replace(/\n/g,'<br>');
     let id=$('#journeyid ').val();
     let creatat=new Date();
     let data={
@@ -47,13 +47,13 @@ function setArticle() {
         cover:elements[2].value,
         destination:elements[3].value,
         author:elements[4].value,
-        content:content,
+        content:tcontent,
         journeyId:id,
         createat:creatat
     }
     console.log('文章提交数据： ' + JSON.stringify(data));
     $.post(insertArti,data,function (res) {
-        console.log(JSON.stringify(res));
+        alert('ok');
     })
 
 }
