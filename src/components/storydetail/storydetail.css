@@ -91,9 +91,14 @@
     animation: hide 300ms;
     animation-fill-mode: forwards;
 }
+.item-fade-in{
+    animation: show 1500ms;
+}
+.item-fade-out{
+    animation: hide 1500ms;
+}
 @keyframes show {
     from{
-
         opacity: 0;
     }
     to{

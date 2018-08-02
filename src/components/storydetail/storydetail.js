@@ -152,6 +152,9 @@ export  default class StoryDetail extends Component{
                     options:this.getOptions(3)
                 });
                 break;
+            case 4:
+                item='story';
+                break;
         }
         this.setState({
             display:item
@@ -352,6 +355,25 @@ export  default class StoryDetail extends Component{
             options:options
         })
     }
+    componentWillUpdate(){
+        let show=document.querySelector(".item-fade");
+        if(show){
+            let classname=show.classList;
+            classname.remove("item-fade-in")
+           // classname.add("item-fade-out")
+           // console.log(show.classList)
+        }
+
+    }
+    componentDidUpdate(){
+        let show=document.querySelector(".item-fade");
+        if(show){
+            let classname=show.classList;
+            classname.remove("item-fade-out")
+            classname.add("item-fade-in")
+           // console.log(show.classList)
+        }
+    }
     render() {
         let article=this.state.article;
         let journey=this.state.journey;
@@ -360,7 +382,7 @@ export  default class StoryDetail extends Component{
         let content=article.content;
         content=content.split("<br>").map((item,i)=>{
             if(item==""){
-                return <br/>
+                return <br key={i}/>
             }
             else{
                 return <p key={i}>{item}</p>
@@ -375,7 +397,7 @@ export  default class StoryDetail extends Component{
         let whatToshow;
         if(this.state.display=='photos'){
             whatToshow=
-                <Col sm={{span:24}} lg={{span:12}}  onClick={this.showShadow.bind(this)}>
+                <Col sm={{span:24}} lg={{span:12}}  onClick={this.showShadow.bind(this)} className={"item-fade"}>
                     <Row gutter={8} className={"row"}>
                         <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/1.jpg'} alt={""}></img></div></Col>
                         <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/2.jpg'} alt={""}></img></div></Col>
@@ -395,13 +417,13 @@ export  default class StoryDetail extends Component{
         }
         else if(this.state.display=='overview'){
             whatToshow=
-                <Col sm={{span:24}} lg={{span:12}}>
+                <Col sm={{span:24}} lg={{span:12}} className={"item-fade"}>
                     <ReactEcharts option={this.state.options} notMerge={true}/>
                 </Col>
         }
         else if(this.state.display=='route'){
             whatToshow=
-                <Col sm={{span:24}} lg={{span:12}} className={"route-col"}>
+                <Col sm={{span:24}} lg={{span:12}} className={"route-col item-fade"}>
                     <ReactEcharts option={this.state.options} notMerge={true}/>
                     <div className={"route-footer"}>
                         <span onClick={this.zoomUp.bind(this)}><img src={add} alt={"放大"}/></span>
@@ -411,7 +433,9 @@ export  default class StoryDetail extends Component{
                     </div>
                 </Col>
         }
-
+        else if(this.state.display=='story'){
+            whatToshow=<Col sm={{span:24}} lg={{span:12}} className={""}></Col>
+        }
         //console.log(content)
 
         return (
