@@ -395,23 +395,26 @@ export  default class StoryDetail extends Component{
             return <p key={i}>Day {i+1}-{item}</p>
         })
         let whatToshow;
+        let getpics=function () {
+            let divs=[];
+            for(let i=0;i<9;i++){
+                divs.push(i)
+            }
+            let res=divs.map((item,i)=>{
+                if(article.cover && journey.journeyId){
+                    return <Col span={8} key={i} style={{padding:'6px'}}><div className={"detail-div"}><img src={baseurl+`/${i+1}.jpg`}/></div></Col>
+                }
+
+            });
+           //console.log(res)
+            return res;
+
+        }
         if(this.state.display=='photos'){
             whatToshow=
                 <Col sm={{span:24}} lg={{span:12}}  onClick={this.showShadow.bind(this)} className={"item-fade"}>
                     <Row gutter={8} className={"row"}>
-                        <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/1.jpg'} alt={""}></img></div></Col>
-                        <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/2.jpg'} alt={""}></img></div></Col>
-                        <Col span={8}><div className={"detail-div"}><img src={baseurl + '/3.jpg'} alt={""}></img></div></Col>
-                    </Row>
-                    <Row gutter={8} className={"row"}>
-                        <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/4.jpg'} alt={""}></img></div></Col>
-                        <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/5.jpg'} alt={""}></img></div></Col>
-                        <Col span={8}><div className={"detail-div"}><img src={baseurl + '/6.jpg'} alt={""}></img></div></Col>
-                    </Row>
-                    <Row gutter={8} className={"row"}>
-                        <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/7.jpg'} alt={""}></img></div></Col>
-                        <Col span={8} ><div className={"detail-div"}><img src={baseurl + '/8.jpg'} alt={""}></img></div></Col>
-                        <Col span={8}><div className={"detail-div"}><img src={baseurl + '/9.jpg'} alt={""}></img></div></Col>
+                        {getpics()}
                     </Row>
                 </Col>
         }
