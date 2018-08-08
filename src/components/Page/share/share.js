@@ -33,7 +33,7 @@ export default class SharePage extends Component{
         const title=<div>AHAI<div style={{fontSize:'10px'}}>虚心接受，坚决不改</div></div>
         return(
             <div className={'share-bk'}>
-                <Gapbar  title={title} style={{background:'bk',titleSize:'15vw',titleColor:'#fff'}}/>
+                <Gapbar  title={title} style={{bkColor:'transparent',titleSize:'15vw',titleColor:'#fff'}}/>
                 <Gapbar title={"Works"} style={{bkColor:'#fff'}}/>
                 <Sharelist  grid={{column:4}} data={this.data}></Sharelist>
             </div>
