@@ -13,15 +13,7 @@ export default class homeimg extends Component{
         const content=this.props.content;
         //处理文章段落
         let article=content.content;
-        article=article.split("<br>").map((item,i)=>{
-            if(item==""){
-                return <br/>
-            }
-            else{
-                return <p key={i}>{item}</p>
-            }
-
-        })
+        article=article.replace(/<br>/g,'\n');
         return (
             <div>
                 <Row>
@@ -43,7 +35,7 @@ export default class homeimg extends Component{
                                 <p>{content.createat}</p>
                             </div>
 
-                            <div className="article">{article}</div>
+                            <div className="article"><pre className={"article-pre"}>{article}</pre></div>
 
                         </div>
                     </Col>

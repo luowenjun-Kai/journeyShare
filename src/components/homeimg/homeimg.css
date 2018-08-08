@@ -24,13 +24,15 @@
     margin-top: 18%;
     color: #56564b;
     text-align: left;
-    overflow: hidden;
-    display: -webkit-box;
+}
+.article-pre{
+    overflow: hidden ;
+    display: -webkit-box ;
     /*autoprefixer: off*/
     -webkit-box-orient: vertical;
     /*autoprefixer: on*/
-    -webkit-line-clamp:12;
-    -moz-box-orient: vertical;
+    -webkit-line-clamp:15;
+    white-space: pre-wrap;
 }
 .article p{
     margin: 0;
