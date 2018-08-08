@@ -8,7 +8,7 @@ export default class Wave extends Component{
     render() {
         return (
             <div>
-                <div class="box">
+                <div className="box">
                     <p className={"wave-slogan"}>{this.props.slogan}</p>
                     <div className={"wave"}></div>
                     <div className={"wave"}></div>
