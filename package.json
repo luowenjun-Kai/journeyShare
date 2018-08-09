@@ -26,6 +26,7 @@
   "devDependencies": {
     "babel-plugin-import": "^1.7.0",
     "react-app-rewire-less": "^2.1.2",
+    "react-app-rewire-webpack-bundle-analyzer": "^1.0.1",
     "react-app-rewired": "^1.5.2",
     "webpack-cli": "^2.1.4"
   }
