@@ -105,7 +105,7 @@ export  default class StoryDetail extends Component{
             article:data,
             journey:detail,
             shadow:false,
-            display:'photos',
+            display:'overview',
             overview:overview,
             options:{},
             sitePos:{}
@@ -139,18 +139,12 @@ export  default class StoryDetail extends Component{
         switch (active){
             case 1:
                 item='overview';
-                this.setState({
-                    options:this.getOptions(1)
-                });
                 break;
             case 2:
                 item='photos';
                 break;
             case 3:
                 item='route';
-                this.setState({
-                    options:this.getOptions(3)
-                });
                 break;
             case 4:
                 item='story';
@@ -222,117 +216,6 @@ export  default class StoryDetail extends Component{
                     }]
             }
         }
-        else if(code==3) { //区域路线图
-            //处理行程字符串
-            let routearr = this.state.journey.route.split(";");
-            let sites =this.state.sitePos;
-            if(sites==""){
-                return {}
-            }
-            let series=[];
-            let des=this.state.journey.destination.split("-")[0];
-            console.log(des)
-            routearr.forEach((item,index)=>{
-                //routearr的长度代表行程天数
-                let point=item.split("-");
-                let data=[];
-                let scatter=[];
-                //每个景点查询其地理位置
-                let length=point.length;
-                for(let i=0;i<length-1;i++){
-                    let obj={
-                        fromName:point[i],
-                        toName:point[i+1],
-                        coords:[sites[point[i]],sites[point[i+1]]]
-                    };
-                    data.push(obj);
-                    scatter.push({
-                        name:point[i],
-                        value:sites[point[i]]
-                    });
-                }
-                //加入最后一个景点
-                scatter.push({
-                    name:point[length-1],
-                    value:sites[point[length-1]]
-                });
-                let day={
-                    type:'lines',
-                    symbol:'none',
-                    tooltip:{
-                      trigger:'item',
-                      formatter:`Day ${index+1} ${item}`
-                    },
-                    data:data
-                };
-                //加入地点描点
-                let scaSeries={
-                    type:'effectScatter',
-                    coordinateSystem: 'geo',
-                    symbolSize:5,
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'right',
-                            formatter: '{b}'
-                        }
-                    },
-                    data:scatter
-                };
-                series.push(day,scaSeries);
-            });
-            console.log(series)
-            return {
-                tooltip:{
-                    trigger:'item'
-                },
-                geo:{
-                    map:des,
-                    roam:true,
-                    silent:true,
-                    scaleLimit:{
-                        min:1,
-                        max:200
-                    },
-                    label:{
-                      show:true,
-                      formatter: '{b}'
-                    },
-                    itemStyle:{
-                        areaColor:'#f1f1f1',
-
-                    },
-                    emphasis:{
-                        itemStyle:{
-                            areaColor:'#80989b'
-                        }
-
-                    },
-                    zoom:2,
-
-                },
-                series:series
-
-            }
-        }
-
-
-    }
-    zoomUp(){
-        let options=JSON.parse(JSON.stringify(this.state.options));
-        options.geo.zoom+=10;
-        console.log(options);
-        this.setState({
-            options:options
-        });
-        this.forceUpdate()
-    }
-    zoomDown(){
-        let options=JSON.parse(JSON.stringify(this.state.options));
-        options.geo.zoom-=10;
-        this.setState({
-            options:options
-        })
     }
     showAreaName(){
         let options=JSON.parse(JSON.stringify(this.state.options));;
@@ -354,6 +237,21 @@ export  default class StoryDetail extends Component{
         this.setState({
             options:options
         })
+    }
+    getpics(article,journey,baseurl) {
+        let divs=[];
+        for(let i=0;i<9;i++){
+            divs.push(i)
+        }
+        let res=divs.map((item,i)=>{
+            if(article.cover && journey.journeyId){
+                return <Col span={8} key={i} style={{padding:'6px'}}><div className={"detail-div"}><img src={baseurl+`/${i+1}.jpg`}/></div></Col>
+            }
+
+        });
+       //console.log(res)
+        return res;
+
     }
     componentWillUpdate(){
         let show=document.querySelector(".item-fade");
@@ -394,51 +292,28 @@ export  default class StoryDetail extends Component{
         route=route.split(";").map((item,i)=>{
             return <p key={i}>Day {i+1}-{item}</p>
         })
-        let whatToshow;
-        let getpics=function () {
-            let divs=[];
-            for(let i=0;i<9;i++){
-                divs.push(i)
-            }
-            let res=divs.map((item,i)=>{
-                if(article.cover && journey.journeyId){
-                    return <Col span={8} key={i} style={{padding:'6px'}}><div className={"detail-div"}><img src={baseurl+`/${i+1}.jpg`}/></div></Col>
-                }
-
-            });
-           //console.log(res)
-            return res;
-
-        }
-        if(this.state.display=='photos'){
-            whatToshow=
-                <Col sm={{span:24}} lg={{span:12}}  onClick={this.showShadow.bind(this)} className={"item-fade"}>
+        let src = url.loadSites(this.state.sitePos,this.state.journey.route)
+        let options = this.getOptions(1)
+        let whatToshow = 
+            // 照片
+            <div>
+                <Col data-part="photos" sm={{span:24}} lg={{span:12}}  onClick={this.showShadow.bind(this)} className={this.state.display=='photos' ? "item-fade" :'title-hide'}>
                     <Row gutter={8} className={"row"}>
-                        {getpics()}
+                        {this.getpics.call(this,article,journey,baseurl)}
                     </Row>
                 </Col>
-        }
-        else if(this.state.display=='overview'){
-            whatToshow=
-                <Col sm={{span:24}} lg={{span:12}} className={"item-fade"}>
-                    <ReactEcharts option={this.state.options} notMerge={true}/>
+                <Col data-part="overview" sm={{span:24}} lg={{span:12}} className={this.state.display=='overview' ? "item-fade" : 'title-hide'}>
+                    <ReactEcharts option={options} notMerge={true}/>
                 </Col>
-        }
-        else if(this.state.display=='route'){
-            whatToshow=
-                <Col sm={{span:24}} lg={{span:12}} className={"route-col item-fade"}>
-                    <ReactEcharts option={this.state.options} notMerge={true}/>
-                    <div className={"route-footer"}>
-                        <span onClick={this.zoomUp.bind(this)}><img src={add} alt={"放大"}/></span>
-                        <span onClick={this.zoomDown.bind(this)}><img src={sub} alt={"缩小"}/></span>
-                        <span onClick={this.showAreaName.bind(this)}><img src={cityimg} alt={"显示城区名"}/></span>
-                        <span onClick={this.showSiteName.bind(this)}><img src={siteimg} alt={"显示景点名"}/></span>
+                <Col data-part="route" sm={{span:24}} lg={{span:12}} className={this.state.display=='route' ? "route-col item-fade" :'title-hide'}>
+                    <div id="iframe-wrap">
+                        <iframe src={src}></iframe>
                     </div>
                 </Col>
-        }
-        else if(this.state.display=='story'){
-            whatToshow=<Col sm={{span:24}} lg={{span:12}} className={""}></Col>
-        }
+                <Col data-part="story" sm={{span:24}} lg={{span:12}} className={this.state.display=='story' ? "" :'title-hide'}></Col>
+            </div>
+             
+            
         //console.log(content)
 
         return (
@@ -447,7 +322,7 @@ export  default class StoryDetail extends Component{
                 <div className={"detail-shadow"} ref={this.refShadow} onClick={this.showShadow.bind(this)}></div>
                 <div className={"detail-modal" } ref={this.refModal}><img></img></div>
                 <div className="detail-title">
-                    <Row>
+                    <Row className={this.state.display ==='route' ? 'title-hide' :''}>
                         <Col lg={{span:8,offset:8}}><h1>{article.title}</h1></Col>
                         <Col lg={{span:24,offset:5}}>{article.subtitle}</Col>
                     </Row>

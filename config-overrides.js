@@ -9,12 +9,12 @@ module.exports = function override(config, env) {
             "@primary-color":"#6c848d"
         }
     })(config,env);
-    config = rewireWebpackBundleAnalyzer(config, env, {
+    /*config = rewireWebpackBundleAnalyzer(config, env, {
         analyzerMode: 'static',
         reportFilename: 'report.html'
-    })
+    })*/
     config.externals={
-        echarts:'window.echarts'
+        echarts:'window.echarts',
     }
     return config;
 };
