@@ -217,27 +217,6 @@ export  default class StoryDetail extends Component{
             }
         }
     }
-    showAreaName(){
-        let options=JSON.parse(JSON.stringify(this.state.options));;
-        options.geo.label.show=!options.geo.label.show;
-        this.setState({
-            options:options
-        })
-
-    }
-    showSiteName(){
-        let options=JSON.parse(JSON.stringify(this.state.options));
-        let series=options.series;
-        for(let i in series){
-            let obj=series[i];
-            if(obj.type=="effectScatter"){
-                obj.label.normal.show=!obj.label.normal.show
-            }
-        }
-        this.setState({
-            options:options
-        })
-    }
     getpics(article,journey,baseurl) {
         let divs=[];
         for(let i=0;i<9;i++){
@@ -319,8 +298,10 @@ export  default class StoryDetail extends Component{
         return (
             <div className="body">
                 {/*弹出层*/}
-                <div className={"detail-shadow"} ref={this.refShadow} onClick={this.showShadow.bind(this)}></div>
-                <div className={"detail-modal" } ref={this.refModal}><img></img></div>
+                <div className={"detail-shadow"} ref={this.refShadow} onClick={this.showShadow.bind(this)} >
+                    <div className={"detail-modal" } ref={this.refModal}><img></img></div>
+                </div>
+                
                 <div className="detail-title">
                     <Row className={this.state.display ==='route' ? 'title-hide' :''}>
                         <Col lg={{span:8,offset:8}}><h1>{article.title}</h1></Col>

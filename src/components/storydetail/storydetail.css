@@ -56,19 +56,18 @@
     text-indent: 2em;
 }
 .detail-shadow{
-    height: 100%;
-    width: 100%;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
-    background-color: #1c1c1c;
-    opacity: 0.8;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(28,28,28,0.8);
     z-index: 100;
     display: none;
+    touch-action: none
 }
 .detail-modal{
     position: absolute;
-    z-index: 200;
     top: 50%;
     left: 50%;
     display: none;
