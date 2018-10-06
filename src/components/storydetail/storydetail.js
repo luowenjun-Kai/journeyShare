@@ -5,10 +5,7 @@ import { Row,Col} from 'antd';
 import { Collapse } from 'antd';
 import axios from 'axios';
 import ReactEcharts from 'echarts-for-react';
-import add from '../../assets/add.svg';
-import sub from '../../assets/subtract.svg';
-import cityimg from '../../assets/icon_city.svg';
-import siteimg from '../../assets/site.svg';
+import GaodeMap from '../gaodeMap/gaodeMap'
 const Panel=Collapse.Panel;
 require('echarts/map/js/province/hunan');
 require('echarts/map/js/province/sichuan');
@@ -40,7 +37,6 @@ export  default class StoryDetail extends Component{
             //获取游记信息
             costJid=journeyid;
             destination=this.state.article.destination;
-            console.log('detail 准备发送' + journeyid);
             axios.get(url.getJourney + journeyid ).then((res)=>{
                 let data=res.data;
                // console.log('in detail the data is ' + JSON.stringify(data));
@@ -159,8 +155,9 @@ export  default class StoryDetail extends Component{
         //图标数据转换
         if(code==1){ //消费分布图
             let rawtext=this.state.article.destination.split('-')[1]
+            console.log(this.state.article) 
             let rawdata=this.state.overview;
-            let duration=this.state.journey.duration;
+            let duration=this.state.journey.duration || 0;
             let text=rawtext + duration + '天行程消费分布图'
             let data=rawdata.map((item)=>{
                 let type=item.type;
@@ -271,7 +268,7 @@ export  default class StoryDetail extends Component{
         route=route.split(";").map((item,i)=>{
             return <p key={i}>Day {i+1}-{item}</p>
         })
-        let src = url.loadSites(this.state.sitePos,this.state.journey.route)
+        // let src = url.loadSites(this.state.sitePos,this.state.journey.route)
         let options = this.getOptions(1)
         let whatToshow = 
             // 照片
@@ -286,7 +283,7 @@ export  default class StoryDetail extends Component{
                 </Col>
                 <Col data-part="route" sm={{span:24}} lg={{span:12}} className={this.state.display=='route' ? "route-col item-fade" :'title-hide'}>
                     <div id="iframe-wrap">
-                        <iframe src={src}></iframe>
+                        <GaodeMap sites={this.state.sitePos}></GaodeMap>
                     </div>
                 </Col>
                 <Col data-part="story" sm={{span:24}} lg={{span:12}} className={this.state.display=='story' ? "" :'title-hide'}></Col>
