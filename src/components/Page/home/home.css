@@ -11,18 +11,17 @@
 #home-body{
     width: 100%;
     position: relative;
-    top: 5000px;
-    animation: fadein 300ms linear 1s;
+    animation: fadein 800ms linear;
     animation-fill-mode: forwards;
     min-height: 400px;
 }
 @keyframes fadein {
     from{
-        top: 5000px;
+        transform: translateY(100%);
         opacity: 0;
     }
     to{
-        top: 0;
+        transform: translateY();
         opacity: 1;
     }
 }
