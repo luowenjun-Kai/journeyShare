@@ -23,7 +23,6 @@ export default class StoryPage extends Component{
                 item.createat=url.setTime(item.createat);
             })
             let topup=data.shift();
-            topup.destination=topup.destination.split('-')[1];
             this.setState({
                 topup:topup,
                 articles:data
@@ -58,7 +57,6 @@ export default class StoryPage extends Component{
         }
     }
     toStoryDetail(){
-        console.log('hello');
         history.push(`/story/detail/${this.state.topup.journeyId}`,{
             data:this.state.topup
         })

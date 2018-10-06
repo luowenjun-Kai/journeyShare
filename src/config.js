@@ -13,7 +13,6 @@ const url={
     getbeian:"http://www.miitbeian.gov.cn",
     gaodeKey:"b54dcc8109bb76644b71845084bd9080",
     setTime:function (t) {
-        console.log(t)
         let time=new Date(t);
         let year=time.getFullYear();
         let raw_month=time.getMonth() + 1;

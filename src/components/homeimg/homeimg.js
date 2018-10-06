@@ -21,7 +21,7 @@ export default class homeimg extends Component{
                         <div className="homepic">
                             <Card hoverable cover={<img alt="oops" src={`${url.images}/${content.cover}/${content.journeyId}/5.jpg`} />} onClick={this.props.clickEvent.bind(this)}>
                                 <Meta
-                                    title={content.destination}
+                                    title={content.destination.split('-')[1]}
                                     description={content.subtitle}
                                 />
                             </Card>
