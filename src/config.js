@@ -1,6 +1,6 @@
-//const baseurl='http://localhost'
 import axios from 'axios';
-const baseurl='http://39.108.236.3';
+//const baseurl='http://localhost'
+const baseurl='https://hoshimi.cn';
 const serverurl=baseurl + ':30001';
 const url={
     images:baseurl + '/images',
